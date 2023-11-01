@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: black;
+}
+
+.image-container {
+    perspective: 1000px;
+    overflow: hidden; /* Añade un overflow:hidden para ocultar el reflejo fuera del contenedor */
+}
+
+.image-wrapper {
+    position: relative;
+    width: 300px; /* Ancho de tu imagen */
+    height: 300px; /* Altura de tu imagen */
+    transform-style: preserve-3d;
+    animation: rotateAnimation 6s infinite linear;
+}
+
+img {
+    max-width: 100%;
+}
+
+@keyframes rotateAnimation {
+    0% {
+        transform: rotateX(0deg);
+    }
+    100% {
+        transform: rotateX(360deg);
+    }
+}
+
+.image-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+    height: 100px; /* Altura del reflejo */
+    transform: scaleY(-1);
+    opacity: 0.5; /* Añade una opacidad para que el reflejo sea más sutil */
+}
